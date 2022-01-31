@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class UserController extends Controller
 {
@@ -91,6 +92,11 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+        $msg = 'User ' . $user->name . ' is deleted';
+        return [
+            'result' => 'okay',
+            'message' => $msg,
+        ];
     }
 }
