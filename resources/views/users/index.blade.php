@@ -21,11 +21,11 @@
             <td>{{ $u->name }}</td>
             <td>{{ $u->email }}</td>
             <td>
-                <button href="{{ route('users.edit', ['user' => $u->id]) }}"
+                <a href="{{ route('users.edit', ['user' => $u->id]) }}"
                     class="btn btn-primary"
                     role="button">
                     Edit
-                </button>
+                </a>
                 <button
                     data-bs-toggle="modal" data-bs-target="#confirmDeleteModal"
                     data-username="{{$u->name}}"
