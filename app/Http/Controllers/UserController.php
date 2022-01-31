@@ -36,7 +36,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.form', ['action' => route('users.store')]);
     }
 
     /**
@@ -47,7 +47,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->save();
+        return redirect()->route('users.index');
     }
 
     /**
@@ -69,7 +74,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('users.form', ['put'=>true, 'action' => route('users.update', ['user' => $user]), 'user' => $user]);
     }
 
     /**
@@ -81,7 +86,13 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if ($request->password) {
+            $user->password = bcrypt($request->password);
+        }
+        $user->save();
+        return redirect()->route('users.index');
     }
 
     /**
