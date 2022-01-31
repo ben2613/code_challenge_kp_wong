@@ -36,7 +36,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.form', ['action' => route('users.store')]);
+        return view('users.form', ['put' => false, 'action' => route('users.store')]);
     }
 
     /**
